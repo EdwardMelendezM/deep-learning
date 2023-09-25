@@ -1,0 +1,18 @@
+# Utiliza una imagen base de Anaconda con Python 3.x
+FROM continuumio/anaconda3:latest
+
+
+# Instala Jupyter Notebook
+RUN conda install -y jupyter
+
+# Crea un directorio de trabajo en el contenedor
+WORKDIR /app
+
+# Copia todos los archivos locales al directorio de trabajo del contenedor
+COPY . .
+
+# Expone el puerto 8888 para Jupyter Notebook
+EXPOSE 8888
+
+# Comando para iniciar Jupyter Notebook
+CMD ["jupyter", "notebook", "--ip=0.0.0.0", "--port=8888", "--no-browser", "--allow-root"]
